@@ -86,13 +86,15 @@ export default {
     menuItems () {
       if (this.isAuthenticated) {
         return [
-          {title: 'Home', path: '/home', icon: 'home'}
+          {title: 'Home', path: '/home', icon: 'home'},
+          {title: 'Customer Service', path: '/customer' }
         ]
       }
       else {
         return [
           {title: 'Sign Up', path: '/signup', icon: 'face'},
-          {title: 'Sign In', path: '/signin', icon: 'lock_open'}
+          {title: 'Sign In', path: '/signin', icon: 'lock_open'},
+         
         ]
       }
     }

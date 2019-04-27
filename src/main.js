@@ -19,9 +19,7 @@ firebase.initializeApp({
 Vue.config.productionTip = false
 
 
-const unsubscribe = firebase.auth()
-
-.onAuthStateChanged((firebaseUser) => {
+const unsubscribe = firebase.auth().onAuthStateChanged((firebaseUser) => {
   new Vue({
     el: '#app',
     router,

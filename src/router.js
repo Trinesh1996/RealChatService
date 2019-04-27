@@ -1,14 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import firebase from 'firebase'
 
 
-Vue.use(Router)
+
+
+
 
 const routerOptions = [
   { path: '/', component: 'Landing' },
   { path: '/signin', component: 'sign-in' },
   { path: '/signup', component: 'sign-up' },
-  { path: '/home', component: 'Home', meta: {requiresAuth: true} }
+  { path: '/home', component: 'Home', meta: {requiresAuth: true} },
+  { path: '*', component: 'notFound' },
+  {path: '/customer', component: 'ChatComponents/customer'},
+  {path: '/support', component: 'ChatComponents/support'}
 ]
 
 const routes = routerOptions.map(route => {
@@ -18,21 +24,26 @@ const routes = routerOptions.map(route => {
   }
 })
 
+Vue.use(Router)
+
 const router = new Router({
   mode: 'history',
   routes
 })
 
+
+// Protect the route
+// localhost:8080/home will be redirected to signin if user hasn't yet logged in.
 router.beforeEach((to, from, next) => {
-  const requiresAuth = to.macthed.some(record => record.meta.requiresAuth)
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   const isAuthenticated = firebase.auth().currentUser
 
   if (requiresAuth && !isAuthenticated) {
-    next('/signIn')
+    next('/signin')
   }
   else {
     next ()
   }
 }) 
 
-export default Router
+export default router

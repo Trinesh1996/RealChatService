@@ -25,8 +25,8 @@ export default new Vuex.Store({
     }
 
   },
-  actions: {
 
+  actions: {
     // User Sign-up
     userSignUp ({commit}, payload) {
       commit('setLoading', true)
@@ -74,6 +74,9 @@ export default new Vuex.Store({
     // Hide signup button if  user is signed in
     isAuthenticated (state) {
       return state.user !== null && state.user !== undefined
+    }
+    ,currentUser: function(state) {
+      return state.user || "";
     }
   }
 })
