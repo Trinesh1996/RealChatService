@@ -6,6 +6,9 @@
       bottom right corner
     </p>
 
+
+
+
     <ChatWidget
       v-if="currentUser"
       :newMessage="newMessage"
@@ -31,11 +34,14 @@
 </template>
 
 <script>
-import ChatWidget from './ChatWidget.vue'
+import ChatWidget from './ChatWidget.vue';
+
+
 import Dialog from './Dialogue.vue';
 import Spinner from 'vue-spinkit'
 import { sendMessage, showDialog, launchChat, createRoom, addSupportStaffToRoom,
 connectToRoom, handleInput } from '../../methods.js';
+
 
 export default {
   name: 'Customer',
@@ -43,6 +49,7 @@ export default {
     Dialog,
     ChatWidget,
     Spinner,
+   
   },
   data() {
     return {
@@ -52,8 +59,9 @@ export default {
       currentRoom: null,
       newMessage: '',
       messages: [],
-      isDialogOpen: false,
+      isDialogOpen: true,
       isLoading: false,
+      
     }
   },
   methods: {
@@ -65,9 +73,6 @@ export default {
     addSupportStaffToRoom,
     connectToRoom,
   }
-  ,mounted: function()
-  {
-    this.userId = this.$store.getters.currentUser.email || "";
-  }
+ 
 }
 </script>

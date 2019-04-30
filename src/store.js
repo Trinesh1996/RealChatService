@@ -6,13 +6,17 @@ import firebase from 'firebase'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  strict: true,
   state: {
     appTitle: 'RealChat',
     user: null,
     error: null,
-    loading: false
+    loading: false,
+    // username is not part of firebase object
+    username: ''
 
   },
+
   mutations: {
     setUser (state, payload) {
       state.user = payload
@@ -22,7 +26,13 @@ export default new Vuex.Store({
     },
     setLoading (state, payload) {
       state.loading = payload
-    }
+    },
+
+    updateUserName (state, username) {
+      state.username = username
+    },
+
+
 
   },
 
@@ -74,9 +84,11 @@ export default new Vuex.Store({
     // Hide signup button if  user is signed in
     isAuthenticated (state) {
       return state.user !== null && state.user !== undefined
-    }
-    ,currentUser: function(state) {
-      return state.user || "";
+    },
+    
+    // get username
+    currentUser: function(state) {
+      return state.user || ""
     }
   }
 })

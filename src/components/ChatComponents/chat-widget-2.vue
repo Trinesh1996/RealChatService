@@ -2,26 +2,7 @@
 <div class="widget">
     <v-container class="my-5">
         <v-card class="pa-3">
-          <v-layout>
-            <v-flex>
             <h2>Got Questions? Chat with us</h2>
-            </v-flex>
-
-               <v-flex>
-                    <v-btn flat icon color="blue lighten-2">
-                        <v-icon>thumb_up</v-icon>
-                    </v-btn>
-                     <v-btn flat icon color="red lighten-2">
-                    <v-icon>thumb_down</v-icon>
-                    </v-btn>
-                    <v-btn flat icon color="black">
-                    <v-icon>clear</v-icon>
-                    </v-btn>
-               
-           
-
-                </v-flex>
-          </v-layout> 
         
             <v-layout row>
                 <v-flex>
@@ -34,17 +15,33 @@
                     </v-card-title>    
                 </v-flex>
              
-             
+                <v-flex>
+                    <v-btn flat icon color="blue lighten-2">
+                        <v-icon>thumb_up</v-icon>
+                    </v-btn>
+                </v-flex>
+                
+                <v-flex>
+                    <v-btn flat icon color="red lighten-2">
+                    <v-icon>thumb_down</v-icon>
+                    </v-btn>
+                </v-flex>
+            <v-btn flat icon color="black">
+                    <v-icon>clear</v-icon>
+                    </v-btn>
+                <v-flex>
+
+                </v-flex>
             </v-layout>
 
-            <v-layout class="chat">
+            <v-layout>
                <section class="chat-body">
                     <div v-for="message in messages" :key="message.id">
                         <span :class="[ message.senderId === currentUser.id ? 'user' :
                         'support']" class="message">{{ message.text }}</span>
                     </div>
                 </section>
-            </v-layout> 
+            </v-layout>
 
           
                 <form @submit.prevent="handleSubmit" class="message-form">
@@ -62,7 +59,7 @@
 
                 
                         <v-card-actions>
-                            <v-btn class="btn-send" flat small>Send</v-btn>
+                            <v-btn flat small>Send</v-btn>
                         </v-card-actions>
                     </v-flex>
                     </v-layout>
@@ -110,28 +107,5 @@ export default {
     border-radius: 50%;
     margin-right: 1.5em;
 }
-
-.message-input {
-  width: 100%;
-  margin-top: 5em;
-}
-
-.btn-send {
-  width: 100%;
-  margin-top: 5em;
-}
-
-.user {
-background-color: lightcyan;
-margin: 2em;
-
-}
-
-.support {
-  background-color: beige;
-  margin: 2em;
-}
-
-
 
 </style>

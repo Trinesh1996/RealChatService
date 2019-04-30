@@ -16,6 +16,8 @@ function sendMessage() {
   });
 
   this.newMessage = '';
+
+  console.log(currentUser)
 }
 
 function connectToRoom(id, messageLimit = 100) {

@@ -12,14 +12,18 @@
       </v-flex>
     </v-layout>
 
+
   </v-container>
 </template>
 
 <script>
-
+import chatwidgets from './ChatComponents/chat-widget-2'
 
 export default {
   name: "home",
+  components: {
+
+  }
 
 
 
