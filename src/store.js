@@ -2,12 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import router from './router';
 import firebase from 'firebase'
-
+import { getField, updateField } from 'vuex-map-fields';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    appTitle: 'RealChat',
+    name: "",
+    surname: "",
     user: null,
     error: null,
     loading: false
@@ -22,7 +23,8 @@ export default new Vuex.Store({
     },
     setLoading (state, payload) {
       state.loading = payload
-    }
+    },
+    updateField,
 
   },
 
@@ -74,9 +76,21 @@ export default new Vuex.Store({
     // Hide signup button if  user is signed in
     isAuthenticated (state) {
       return state.user !== null && state.user !== undefined
-    }
-    ,currentUser: function(state) {
+    },
+
+    currentUser: function(state) {
       return state.user || "";
+    },
+
+    getField,
+
+    getName (state) {
+      return state.name
+    },
+
+    getSurname(state) {
+      return state.surname
     }
+
   }
 })

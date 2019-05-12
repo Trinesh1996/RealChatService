@@ -2,12 +2,12 @@
       <v-container fluid>
     <v-layout row wrap>
       <v-flex xs12 text-xs-center mt-5>
-        <h1>Welcome to Real Chat</h1>
+        <h1>Welcome to Ayo Customer AI</h1>
       </v-flex>
       <v-flex xs12 sm6 offset-sm3 mt-3>
         <blockquote class="blockquote text-xs-center">
-          Your Personal Real Estate Advisor <br>
-          Powered By Artificial Intelligence
+          Customer Service and Experience enhanced by AI. <br>
+          
         </blockquote>
       </v-flex>
       <v-flex xs12 sm6 offset-sm3 mt-3 class="text-xs-center" mt-5>

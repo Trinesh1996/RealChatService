@@ -1,5 +1,18 @@
 <template>
-  <div class="support-area">
+<v-app>
+  <v-content>
+
+  </v-content>
+
+</v-app>
+
+</template>
+
+
+
+
+
+  <!-- <div class="support-area">
     <aside class="support-sidebar">
       <h3>Users</h3>
       <ul v-for="room in rooms" :key="room.id">
@@ -33,8 +46,8 @@
           />
       </form>
     </section>
-  </div>
-</template>
+  </div> -->
+
 
 <script>
 import { sendMessage, connectToRoom } from '../../methods';

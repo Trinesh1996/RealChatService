@@ -9,6 +9,28 @@
           <v-layout column>
             <v-flex>
               <v-text-field
+                name="name"
+                label="Name"
+                id="name"
+                type="name"
+                v-model="name"             
+                required></v-text-field>
+            </v-flex>
+          </v-layout>
+            <v-layout column>
+            <v-flex>
+              <v-text-field
+                name="surname"
+                label="Surname"
+                id="surname"
+                type="surname"
+                v-model="surname"
+                required></v-text-field>
+            </v-flex>
+          </v-layout>
+          <v-layout column>
+            <v-flex>
+              <v-text-field
                 name="email"
                 label="Email"
                 id="email"
@@ -55,15 +77,16 @@
 </template>
 
 <script>
-
+import { mapFields } from 'vuex-map-fields';
 export default {
     name: "SignUp",
     data () {
-        return {
+        return {          
             email: '',
             password: '',
             passwordConfirm: '',
-            alert: false
+            alert: false,
+           
         }
     },
 
@@ -73,8 +96,10 @@ export default {
                 return
             }
             this.$store.dispatch('userSignUp', { email: this.email, password: this.password })
-        }
-    },
+          
+           
+        },
+        },
 
     computed: {
         comparePasswords () {
@@ -90,9 +115,11 @@ export default {
         },
         loading () {
             return this.$store.state.loading
-         }
-    },
+         },
 
+         ...mapFields(['name', 'surname'])
+    },
+    
     watch: {
         error (value) {
             if (value) {

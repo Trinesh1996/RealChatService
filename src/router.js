@@ -11,7 +11,7 @@ const routerOptions = [
   { path: '/', component: 'Landing' },
   { path: '/signin', component: 'sign-in' },
   { path: '/signup', component: 'sign-up' },
-  { path: '/home', component: 'Home', meta: {requiresAuth: true} },
+  { path: '/home', component: 'Dashboard/Home', meta: {requiresAuth: true} },
   { path: '*', component: 'notFound' },
   {path: '/customer', component: 'ChatComponents/customer'},
   {path: '/support', component: 'ChatComponents/support'}
