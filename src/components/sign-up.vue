@@ -7,6 +7,15 @@
       <v-flex xs12 sm6 offset-sm3 mt-3>
        <form v-on:submit.prevent="userSignUp">
           <v-layout column>
+               <v-flex>
+              <v-text-field
+                name="username"
+                label="username"
+                id="username"
+                type="name"
+                v-model="username"
+                required></v-text-field>
+            </v-flex>
             <v-flex>
               <v-text-field
                 name="name"
@@ -96,8 +105,6 @@ export default {
                 return
             }
             this.$store.dispatch('userSignUp', { email: this.email, password: this.password })
-          
-           
         },
         },
 

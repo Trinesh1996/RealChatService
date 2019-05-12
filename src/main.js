@@ -18,6 +18,12 @@ firebase.initializeApp({
 
 Vue.config.productionTip = false
 
+// Database stores all firebase users for now (demo)
+
+const db = firebase.firestore();
+
+
+
 
 const unsubscribe = firebase.auth().onAuthStateChanged((firebaseUser) => {
   new Vue({

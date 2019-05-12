@@ -8,9 +8,9 @@ import firebase from 'firebase'
 
 
 const routerOptions = [
-  { path: '/', component: 'Landing' },
-  { path: '/signin', component: 'sign-in' },
-  { path: '/signup', component: 'sign-up' },
+  { path: '/', component: 'Landing', meta: {requiresGuest: true} },
+  { path: '/signin', component: 'sign-in', meta: {requiresGuest: true} },
+  { path: '/signup', component: 'sign-up', meta: {requiresGuest: true}},
   { path: '/dashboard', component: 'AgentInterface/Dashboard', meta: {requiresAuth: true} },
   { path: '*', component: 'notFound' },
   {path: '/customer', component: 'ChatComponents/customer'},
@@ -32,17 +32,28 @@ const router = new Router({
 })
 
 
-// Protect the route
+// Protect the routes
 // localhost:8080/home will be redirected to signin if user hasn't yet logged in.
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   const isAuthenticated = firebase.auth().currentUser
+
+  const requiresGuest = to.matched.some(record => record.meta.requiresGuest)
 
   if (requiresAuth && !isAuthenticated) {
     next('/signin')
   }
   else {
     next ()
+  }
+
+  if (requiresGuest && isAuthenticated) {
+    next({
+      path: "/dashboard",
+    })
+  }
+  else {
+    next()
   }
 }) 
 
