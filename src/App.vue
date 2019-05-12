@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Navbar from './components/Dashboard/Navbar'
+import Navbar from './components/AgentInterface/Navbar'
 export default {
   components: {
     Navbar

@@ -1,17 +1,16 @@
 <template>
 <nav>
   <v-toolbar app flat>
-  <v-toolbar-side-icon class="grey--text" v-on:click="sidebar = !sidebar">
-  </v-toolbar-side-icon>
+ 
       <span class="hidden-sm-and-up">
-        <v-toolbar-side-icon @click="sidebar = !sidebar">
+        <v-toolbar-side-icon v-if="hideSidebar" @click="sidebar">
         </v-toolbar-side-icon>
       </span>
         <v-toolbar-title class="text-uppercase grey--text">
-        <router-link to="/" tag="span" style="cursor: pointer">           
+              
       <span class="font-weight-light">Ayo</span>
       <span>Chat</span>
-        </router-link>
+     
       </v-toolbar-title>
         <v-spacer></v-spacer>
  
@@ -28,7 +27,7 @@
           </v-list-tile> 
         </v-list> -->
 
-    <v-btn flat class="white" router to="/">Home
+    <v-btn flat v-if="isAuthenticated == false" class="white" router to="/">Home
         <v-icon left>home</v-icon>
     </v-btn>
       <v-btn v-if="isAuthenticated" flat @click="userSignOut">
@@ -41,19 +40,19 @@
      
     <v-navigation-drawer v-model="sidebar" app>
       <v-list>
-        <v-list-tile>
-          <v-list-action>
-            <v-icon class="white --text">dashboard
-        
-        <v-list-tile-action>
-          <v-icon></v-icon>
-            </v-list-tile-action>
-              <v-list-tile-content></v-list-tile-content>
-            </v-list-tile> 
-        
-         
+        <v-list-tile v-for="link in links" :key="link.text">
+          <v-list-tile-action>
+            <v-icon class="white --text">{{link.icon}}</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title class="black--text">{{link.text}}</v-list-tile-title>
+
+          </v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
+        
 
     
     <v-content>
@@ -69,11 +68,12 @@ export default {
 
  data () {
       return {
-        sidebar: true,
+        sidebar: false,
         links: [
           {icon: 'dashboard', text: "Dashboard", route: '/home'},
-          {icon: 'chat', text: "Chat", route: '/chat'},
-          {icon: 'person', text: "Team", route: '/team'},
+          {icon: 'message', text: "Chat", route: '/chat'},
+          {icon: 'group', text: "Team", route: '/team'},
+       
 
         ]
       }
@@ -92,20 +92,37 @@ export default {
       return this.$store.getters.isAuthenticated
     },
 
+    hideSidebar () {
+      if (this.isAuthenticated) {
+        this.sidebar = true
+      }
+      else {
+        this.sidebar = false
+      }
+    },
+
+
+
     menuItems () {
       if (this.isAuthenticated) {
         return [
-          {title: 'Home', path: '/home', icon: 'home'}
+          {title: 'Home', path: '/home', icon: 'home'},
+      
         ]
       }
       else {
         return [
           {title: 'Sign Up', path: '/signup', icon: 'face'},
           {title: 'Sign In', path: '/signin', icon: 'lock_open'},
+     
          
-        ]
+        ];
+
+
       }
-    }
+    },
+
+   
     }
 }
 </script>

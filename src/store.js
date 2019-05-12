@@ -6,14 +6,18 @@ import { getField, updateField } from 'vuex-map-fields';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  strict: true,
   state: {
     name: "",
     surname: "",
     user: null,
     error: null,
-    loading: false
+    loading: false,
+    // username is not part of firebase object
+    username: ''
 
   },
+
   mutations: {
     setUser (state, payload) {
       state.user = payload
@@ -36,7 +40,9 @@ export default new Vuex.Store({
       .then(firebaseUser => {
         commit('setUser', {email: firebaseUser.user.email})
         commit('setLoading', false)
-        router.push('/home')
+        router.push('/dashboard')
+     
+  
       })
       .catch (error => {
         commit('setError', error.message)
@@ -52,7 +58,9 @@ export default new Vuex.Store({
         commit('setUser', {email: firebaseUser.user.email})
         commit('setLoading', false)
         commit('setError', null)
-        router.push('/home')
+        router.push('/dashboard')
+
+    
       })
 
       .catch(error => {
@@ -78,6 +86,10 @@ export default new Vuex.Store({
       return state.user !== null && state.user !== undefined
     },
 
+    isSignedIn (state) {
+      return state.user
+    },
+
     currentUser: function(state) {
       return state.user || "";
     },
@@ -90,7 +102,7 @@ export default new Vuex.Store({
 
     getSurname(state) {
       return state.surname
-    }
+    },
 
   }
 })
